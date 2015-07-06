@@ -80,8 +80,14 @@ public final class CertificateHelper {
     private static final Date NOT_BEFORE = new Date(
             System.currentTimeMillis() - 86400000L * 365);
 
-    /** The maximum possible value in X.509 specification: 9999-12-31 23:59:59 */
-    private static final Date NOT_AFTER = new Date(253402300799000L);
+    /**
+     * The maximum possible value in X.509 specification: 9999-12-31 23:59:59
+     *
+     * It appears that Mac/IOS doesn't trust certificates with the max possible
+     * value. For whatever reason, the max value they accept is
+     * 6084-01-24 02:07:59 PM GMT.
+     */
+    private static final Date NOT_AFTER = new Date(2556169199000L);
 
     private static final String SSL_CONTEXT_PROTOCOL = "TLS";
 
